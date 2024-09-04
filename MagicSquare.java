@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,17 +17,27 @@ import java.util.Set;
  *
  */
 
-// Create 2D array to hold matrix
+/**
+ * Create 2D array to hold matrix
+ */
 public class MagicSquare implements MagicSquareInterface {
     private final int[][] matrixMagicSquare;
     //private final boolean isValidMagicSquare;
 
-    // Constructor that read Magic Square from file
+    /**
+     * Constructor that read Magic Square from file
+     * @param fileName the string name of the file that read and parses information
+     * @throws FileNotFoundException
+     */
     public MagicSquare(String fileName) throws FileNotFoundException {
         matrixMagicSquare = readMatrix(fileName);
-        //isValidMagicSquare = isMagicSquare();
+       
     }
-
+    /**
+     * 
+     * @param filename string name of the file that user creates 
+     * @param dimension the int size of the magic square that user creates
+     */
     public MagicSquare(String filename, int dimension) {
         if (dimension % 2 == 0) {
             // Ensure dimension is odd
@@ -36,9 +45,14 @@ public class MagicSquare implements MagicSquareInterface {
         }
         matrixMagicSquare = new int[dimension][dimension];
         generateMagicSquare(dimension);
-        //isValidMagicSquare = isMagicSquare();
+        
     }
-
+    /**
+     * 
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException
+     */
     private int[][] readMatrix(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
@@ -57,15 +71,23 @@ public class MagicSquare implements MagicSquareInterface {
         scanner.close();
         return matrix;
     }
-
+    /**
+     * 
+     * @param fileName 
+     * @throws IOException
+     */
     public void saveToFile(String fileName) throws IOException {
         File file = new File(fileName);
         PrintWriter outFile = new PrintWriter(new FileWriter(file));
 
         outFile.println();
+        outFile.close();
     }
 
-
+    /**
+     * 
+     * @param size returns the size of the square
+     */
     public void generateMagicSquare(int size) {
         int n = size;
         int row = n - 1;
